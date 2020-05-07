@@ -22,10 +22,10 @@ class Main extends React.Component {
             })
             .catch(err => console.log(err));
     };
-    handleInputChange = (e) => {
+    handleInputChange = async (e) => {
         const value = e.target.value;
-        this.setState({ search: value });
-        let filteredEmployees = this.state.employees.filter(employee => employee.name.first.includes(this.state.search));
+        await this.setState({ search: value });
+        let filteredEmployees = this.state.employees.filter(employee => employee.name.first.toLowerCase().includes(this.state.search.toLowerCase()));
         this.setState({filtered: filteredEmployees})
     }
 
@@ -48,7 +48,6 @@ class Main extends React.Component {
                         </tr>
                     ))
                         :
-
                         this.state.filtered.map((employee, i) => (
                             <tr key={i}>
                                 <th scope="row"><img alt="Employee Pic" src={employee.picture.medium} /></th>
