@@ -18,7 +18,7 @@ class Main extends React.Component {
         API.search()
             .then(res => {
                 this.setState({ employees: res.data.results })
-                console.log(res.data.results)
+                // console.log(res.data.results)
             })
             .catch(err => console.log(err));
     };
@@ -30,15 +30,15 @@ class Main extends React.Component {
     }
     compareValues = (key, order = 'asc') => {
         return function innerSort(a, b) {
-            if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+            if (!a.name.hasOwnProperty(key) || !b.name.hasOwnProperty(key)) {
                 // property doesn't exist on either object
                 return 0;
             }
 
             const varA = (typeof a[key] === 'string')
-                ? a[key].toUpperCase() : a[key];
+                ? a.name[key].toUpperCase() : a.name[key];
             const varB = (typeof b[key] === 'string')
-                ? b[key].toUpperCase() : b[key];
+                ? b.name[key].toUpperCase() : b.name[key];
 
             let comparison = 0;
             if (varA > varB) {
@@ -51,8 +51,13 @@ class Main extends React.Component {
             );
         };
     }
-    handleClick = (e) => {
-        
+    handleClick = async (e) => {
+        const order = e.target.getAttribute("dataorder")
+        const value = e.target.getAttribute("dataid")
+        let sortedEmployees = this.state.employees.sort(this.compareValues(value, order))
+        await this.setState({employees: sortedEmployees});
+        console.log(this.state.employees)
+
     }
 
     render() {
@@ -62,7 +67,7 @@ class Main extends React.Component {
                     <h1> Employee Management</h1>
                     <SearchForm name="Employees" type="Name" handleInputChange={this.handleInputChange} />
                 </Jumbotron>
-                <Table>
+                <Table handleClick={this.handleClick}>
                     {this.state.search === "" ? this.state.employees.map((employee, i) => (
                         <tr key={i}>
                             <th scope="row"><img alt="Employee Pic" src={employee.picture.medium} /></th>
