@@ -22,6 +22,10 @@ class Main extends React.Component {
             })
             .catch(err => console.log(err));
     };
+    handleInputChange = (e) => {
+        const value = e.target.value;
+        this.setState({search: value});
+    }
 
 
     render() {
@@ -29,7 +33,7 @@ class Main extends React.Component {
             <Container>
                 <Jumbotron>
                     <h1> Employee Management</h1>
-                    <SearchForm name="Employees" type="Name" />
+                    <SearchForm name="Employees" type="Name" handleInputChange={this.handleInputChange}/>
                 </Jumbotron>
                 <Table>
                     {this.state.employees.map((employee, i) => (

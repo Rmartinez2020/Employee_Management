@@ -6,7 +6,7 @@ function SearchForm(props) {
             <div className="form-group">
             <label htmlFor="search">Search {props.name}</label>
             <br/>
-            <input type="search" id="search" placeholder={"Search by "+props.type}/>
+            <input type="search" id="search" placeholder={"Search by "+props.type} onChange={props.handleInputChange}/>
             </div>
         </form>
     )
