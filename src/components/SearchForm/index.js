@@ -4,7 +4,7 @@ function SearchForm(props) {
     return (
         <form>
             <div className="form-group">
-            <label for="search">Search {props.name}</label>
+            <label htmlFor="search">Search {props.name}</label>
             <br/>
             <input type="search" id="search" placeholder={"Search by "+props.type}/>
             </div>

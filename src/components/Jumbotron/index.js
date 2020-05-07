@@ -4,7 +4,7 @@ import Container from "../Container";
 
 function Jumbotron(props) {
     return (
-        <div class="jumbotron jumbotron-fluid text-center">
+        <div className="jumbotron jumbotron-fluid text-center">
             <Container>
             {props.children}
             </Container>
