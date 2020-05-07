@@ -7,7 +7,9 @@ import API from "../../utils/API"
 
 class Main extends React.Component {
     state = {
-        employees: []
+        employees: [],
+        filtered:[],
+        search: ""
     };
     componentDidMount(){
         this.getEmployees();
@@ -31,7 +33,6 @@ class Main extends React.Component {
                 </Jumbotron>
                 <Table>
                     {this.state.employees.map((employee, i) => (
-                        
                             <tr key={i}>
                                 <th scope="row"><img alt="Employee Pic" src={employee.picture.medium}/></th>
                                 <td>{employee.name.first}</td>
@@ -39,9 +40,7 @@ class Main extends React.Component {
                                 <td>{employee.email}</td>
                                 <td>{employee.dob.age}</td>
                             </tr>
-                        
                     ))}
-
                 </Table>
             </Container>
         )
