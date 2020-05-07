@@ -8,10 +8,10 @@ import API from "../../utils/API"
 class Main extends React.Component {
     state = {
         employees: [],
-        filtered:[],
+        filtered: [],
         search: ""
     };
-    componentDidMount(){
+    componentDidMount() {
         this.getEmployees();
     }
     getEmployees = () => {
@@ -24,7 +24,9 @@ class Main extends React.Component {
     };
     handleInputChange = (e) => {
         const value = e.target.value;
-        this.setState({search: value});
+        this.setState({ search: value });
+        let filteredEmployees = this.state.employees.filter(employee => employee.name.first.includes(this.state.search));
+        this.setState({filtered: filteredEmployees})
     }
 
 
@@ -33,18 +35,30 @@ class Main extends React.Component {
             <Container>
                 <Jumbotron>
                     <h1> Employee Management</h1>
-                    <SearchForm name="Employees" type="Name" handleInputChange={this.handleInputChange}/>
+                    <SearchForm name="Employees" type="Name" handleInputChange={this.handleInputChange} />
                 </Jumbotron>
                 <Table>
-                    {this.state.employees.map((employee, i) => (
+                    {this.state.search === "" ? this.state.employees.map((employee, i) => (
+                        <tr key={i}>
+                            <th scope="row"><img alt="Employee Pic" src={employee.picture.medium} /></th>
+                            <td>{employee.name.first}</td>
+                            <td>{employee.name.last}</td>
+                            <td>{employee.email}</td>
+                            <td>{employee.dob.age}</td>
+                        </tr>
+                    ))
+                        :
+
+                        this.state.filtered.map((employee, i) => (
                             <tr key={i}>
-                                <th scope="row"><img alt="Employee Pic" src={employee.picture.medium}/></th>
+                                <th scope="row"><img alt="Employee Pic" src={employee.picture.medium} /></th>
                                 <td>{employee.name.first}</td>
                                 <td>{employee.name.last}</td>
                                 <td>{employee.email}</td>
                                 <td>{employee.dob.age}</td>
                             </tr>
-                    ))}
+                            ))
+                    }
                 </Table>
             </Container>
         )
