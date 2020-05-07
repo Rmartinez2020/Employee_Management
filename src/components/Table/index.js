@@ -7,10 +7,10 @@ function Table (props) {
   <thead>
     <tr>
       <th scope="col"></th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
+      <th scope="col">First <i className="fas fa-angle-down" onClick={props.onClick}></i> <i className="fas fa-angle-up" onClick={props.onClick}></i> </th>
+      <th scope="col">Last  <i className="fas fa-angle-down" onClick={props.onClick}></i> <i className="fas fa-angle-up" onClick={props.onClick}></i> </th>
       <th scope="col">Email</th>
-      <th scope="col">Age</th>
+      <th scope="col">Age  <i className="fas fa-angle-down" onClick={props.onClick}></i> <i className="fas fa-angle-up" onClick={props.onClick}></i></th>
     </tr>
   </thead>
   <tbody>
