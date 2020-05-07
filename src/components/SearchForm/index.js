@@ -3,9 +3,11 @@ import React from "react";
 function SearchForm(props) {
     return (
         <form>
-            <label for="search">Search {props.name}:</label>
-            <br />
-            <input type="search" id="search" placeholder={"search by "+props.type}/>
+            <div className="form-group">
+            <label for="search">Search {props.name}</label>
+            <br/>
+            <input type="search" id="search" placeholder={"Search by "+props.type}/>
+            </div>
         </form>
     )
 }
